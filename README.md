@@ -133,7 +133,7 @@ pip3 install OTXv2 requests
 2. Paste the provided HTML content
 3. Upload to your GCS bucket
 
-## 🏃‍♂Running the Tracker
+## 🏃‍♂ Running the Tracker
 ### Start the Python Script
 python3 bph_tracker.py
 
