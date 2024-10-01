@@ -41,7 +41,7 @@ Track potential Bulletproof Hosting (BPH) infrastructure using AlienVault's Open
 - [VM Instance Setup](#-vm-instance-setup)
 - [Python Script Setup](#-python-script-setup)
 - [Website Setup](#-website-setup)
-- [Running The Tracker](#-running-the-tracker)
+- [Running the Tracker](#-running-the-tracker)
 - [Monitoring and Maintenance](#-monitoring-and-maintenance)
 
 ## 📋 Prerequisites
@@ -133,8 +133,7 @@ pip3 install OTXv2 requests
 2. Paste the provided HTML content
 3. Upload to your GCS bucket
 
-## 🏃‍♂Running The Tracker
-
+## 🏃‍♂Running the Tracker
 ### Start the Python Script
 python3 bph_tracker.py
 
