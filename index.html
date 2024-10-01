@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPH Infrastructure Tracker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1a;
+            color: #00ff00;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #2a2a2a;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #00ff00;
+            margin-bottom: 30px;
+        }
+        .data-container {
+            background-color: #333;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .data-item {
+            background-color: #444;
+            border-left: 4px solid #00ff00;
+            padding: 10px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+        .data-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+        }
+        .timestamp {
+            font-size: 0.8em;
+            color: #888;
+        }
+        #lastUpdated {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BPH Infrastructure Tracker</h1>
+        <div id="dataContainer" class="data-container">
+            <!-- Data will be inserted here by JavaScript -->
+        </div>
+        <div id="lastUpdated"></div>
+    </div>
+
+    <script>
+        function fetchData() {
+            fetch('data.json')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('dataContainer');
+                    container.innerHTML = '';
+                    data.forEach(item => {
+                        const div = document.createElement('div');
+                        div.className = 'data-item';
+                        div.innerHTML = `
+                            <strong>${item.type.toUpperCase()}:</strong> ${item.id}<br>
+                            <pre>${JSON.stringify(item.data, null, 2)}</pre>
+                            <span class="timestamp">${item.timestamp}</span>
+                        `;
+                        container.appendChild(div);
+                    });
+                    document.getElementById('lastUpdated').textContent = `Last updated: ${new Date().toLocaleString()}`;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        fetchData();
+        setInterval(fetchData, 60000); // Refresh every minute
+    </script>
+</body>
+</html>
